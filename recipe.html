@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Food Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div id="root" v-cloak>
+
+        <div class="topnav">
+            <div> <strong> Serri*s Savoury Meal 🍲 </strong> </div>
+        </div>
+
+        <div class="container">
+            <!-- List view -->
+            <div v-if="!currentFood">
+                <p class="golden-border mt-6">Welcome to my food recipe content. I love to share with you my gratifying
+                    dishes that you can prepare for your loved ones. <strong>Enjoy my recipe.</strong> And feel free to
+                    share.</p>
+
+
+
+                <h1 class="main-heading">R E C I P E S</h1>
+                <div class="card">
+                    <div class="grid">
+                        <a v-for="food in foods" class="grid-item food-card" v-on:click="currentFood = food">
+                            <img v-bind:alt="food.name" v-bind:src="food.imgUrl">
+                            <h4>{{food.name}}</h4>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recipe view -->
+
+        <div class="container">
+            <div class="user-info mt-6">
+                <img alt="serritenshi user image" src="images/me/b.jpg">
+                <a style="text-decoration:none" href="C:/berna/projects/recipes/src/recipe.html"></a>
+            </div>
+            <div v-if="currentFood">
+                <button v-on:click="currentFood = null">List of Recipes</button>
+                <h1>{{currentFood.name}}</h1>
+                <img class="main-image" v-bind:src="currentFood.imgUrl" alt="food" />
+                <p>{{currentFood.description}}</p>
+
+                <div class="method">
+                    <div v-if="currentFood.method">
+                        <h2>Method</h2>
+                        <ol>
+                            <li v-for="x in currentFood.method">{{x}}</li>
+                        </ol>
+                    </div>
+                    <aside class="ingredients" v-if="currentFood.ingredients">
+                        <h2>Ingredients</h2>
+                        <ul>
+                            <li v-for="x in currentFood.ingredients">{{x}}</li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            Copyright © 2020- Serritenshi. All Rights Reserved.
+        </footer>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+
+        let app = new Vue({
+            el: '#root',
+            data: {
+                foods: [
+                    {
+                        name: 'American Pancakes',
+                        url: 'C:/berna/projects/recipes/src/recipe.html',
+                        imgUrl: 'images/pancake.jpg',
+                        description: 'American style fluffy pancakes - good for delicious breakfast or dessert you can pair with ice cream or fresh strawberries & blueberries.',
+                        ingredients: [
+
+                            '5dl hvetemel flour',
+                            '4 egg',
+                            '5dl milk',
+                            '4ts sugar',
+                            '1ts baking soda',
+                            '0.5ts salt',
+                        ],
+                        method: [
+
+                            'Put 5dl hvetemel flour in a mixing bowl.',
+                            'Crack 4 eggs mix it together with the flour.',
+                            'Put in 5dl of milk.',
+                            'Add 4 spoon of sugar.',
+                            'Add 1 teaspoon of baking soda.',
+                            'Add 0.5 teaspoon of salt.',
+                            'Mix all together until you get the soft texture.',
+                        ]
+                    },
+                    {
+                        name: 'Spring Rolls',
+                        imgUrl: 'images/springroll.jpg',
+                        description: 'Spring rolls are nice in spring, but also in autumn, and summer, and also winter 😁',
+                        ingredients: [
+
+                            '1 pack spring roll wrapper',
+                            '2 packet ground chicken/pork',
+                            '4 stalks carrots',
+                            '1/2 small cabbage',
+                            '1 pack bean sprouts',
+                            '2 tbspn garlic minced',
+                            '1 medium-sized onion chopped',
+                            '3 tbsp cooking oil',
+                            '3 tbsp soy sauce',
+                            '1 tbsp oyster sauce',
+                            '2 tbsp grill-meat spice',
+                        ],
+                        method: [
+
+                            'Meat and vegetables must cooked separately.',
+                            'Fry the meat with onions & minced-garlic.',
+                            'Add grill-meat spice for taste.',
+                            'Add two-teaspoon of soysauce for the taste and set aside.',
+                            'For the vegies: Fry the thin-sliced of carrots with garlic and onions.',
+                            'Add the cabbage and bean sprouts fry and mix it well.',
+                            'Add two-teaspoon of oyster sauce for the taste.',
+                            'Add the meat back together and let it cool.',
+                            'Start folding the spring roll: Fold over the corner, roll tight. Close it up and secure.',
+                            'Keep them all covered to prevent drying out so easily.',
+                            'After folding all: heat up cooking oil and start frying.',
+                            'Once they are golden brown they are done.',
+                            'Place them in a rack to drain.',
+
+                        ]
+                    },
+                    {
+                        name: 'Bihon Noodles',
+                        imgUrl: 'images/bihon.jpg',
+                        description: 'Beehon Noodles are very tasty! They are made of rice.',
+                        ingredients: [
+
+                            '1 lb of bihon Rice noodles ',
+                            '1/2 lb chicken shredded',
+                            '1/2 french beans',
+                            '1/2 small cabbage',
+                            '2 stalks of carrots',
+                            '1 red bell pepper',
+                            '1 piece chicken cube',
+                            '3 cloves garlic minced',
+                            '2 small onion chopped',
+                            '4 tbsp soy sauce',
+                            '1 tbsp grill-meat spice',
+
+                        ],
+                        method: [
+
+                            'Soak the bihon noodles in water for 10minutes.',
+                            'Drain the bihon noodles: add 1 tspn of soy sauce and 1 tspn of cooking oil mix it well.',
+                            'Boil the chicken and shred it.',
+                            'Cut all the vegetables in thin-sliced.',
+                            'Fry the minced-garlic and add chopped-onions.',
+                            'Fry shredded chicken until golden brown.',
+                            'Add 1 tbspn of grill-meat spice.',
+                            'Add 2 tbspn of soy sauce: mix it well and set aside.',
+                            'Fry the carrots first, next bell pepper, french beans, cabbage.',
+                            'Add 2 tbspn of soy sauce for the taste.',
+                            'Add 2 cups of water and chicken cube.',
+                            'Let it boil and then add bihon noodles.',
+                            'Add back the shredded chicken.',
+                            'Cook and mix it all together until the liquid evaporates.',
+
+                        ]
+                    },
+                    {
+                        name: 'Beef Steak',
+                        imgUrl: 'images/bistek.jpg',
+                        description: 'Beef steak or bistek in filipino version is super tasty and best served with steamed-rice.',
+                        ingredients: [
+
+                            '1 1/2 lbs beef sirlion',
+                            '3 yellow onions',
+                            '3 cloves garlic minced',
+                            '2 stalks spring onions',
+                            '5 tbspn soy sauce',
+                            '1/2 tsp ground black pepper',
+                            '4 pcs kalamansi or 1 pc Lemon',
+                            '1 pinch salt',
+                            '1 pinch sugar',
+                        ],
+                        method: [
+
+                            'Cut the beef in thinly-sliced and set aside in a container.',
+                            'Add soy sauce, vinegar, kalamansi or lemon, salt, sugar and ground black pepper.',
+                            'Marinate the beef for atleast one hour. For best result marinate overnight.',
+                            'Cut the yellow onions into thinly rings.',
+                            'Cut the spring onions into thinly rings.',
+                            'Drain the marinade from the beef and keep the marinade for later.',
+                            'Pan fry the beef each side and set aside.',
+                            'Pan fry the yellow onions until soft and set aside.',
+                            'Saute the garlic and add more oil if needed',
+                            'Add back the beef and the remaining marinade sauce.',
+                            'Pour a little bit of water and put into boil.',
+                            'Cover the pan and let it simmer until the meat is tender.',
+                            'Transfer to a serving plate with chopped spring onions and pan-fried yellow ring onions on top.',
+                        ]
+                    },
+                    {
+                        name: 'Burger',
+                        imgUrl: 'images/burger.jpg',
+                        description: '',
+                        ingredients: [
+
+                            '8 pieces burger bun',
+                            '2 pack grounded beef',
+                            '10 cloves garlic minced',
+                            '1 tbsp cooking oil',
+                            '2 big tomatoes',
+                            'shredded lettuce',
+                            '8 cheese burger',
+                            '1/2 cucumber',
+                            '1 tomato ketchup',
+                            '2 tbsp grill-meat spice',
+
+                        ],
+                        method: [
+
+                            'Prepare the dough, add garlic-minced and grill-meat spice with ground beef.',
+                            'After mixing the meat dough properly, make the meat burger in equal sizes and set aside.',
+                            'Pan fry each side until it is done.',
+                            'Chop the cucumber and tomato into thin slices.',
+                            'Prepare the burger with bun, shredded lettuce, cucumber, tomato and with cheese and ketchup.',
+                            'Serve a home made burger dough. Enjoy.',
+
+
+
+                            
+
+                        ]
+                    },
+                    {
+                        name: 'Chicken Rendang',
+                        imgUrl: 'images/chickenrendang.jpg',
+                        description: '',
+                        ingredients: [
+
+                            '3 tbsp Tamarine paste',
+                            '1 whole chicken chopped',
+                            '2 stalks lemon grass',
+                            '15 pieces small onion',
+                            '15 cloves garlic',
+                            '1 piece yellow ginger',
+                            '1 piece blue ginger',
+                            '1 piece normal ginger',
+                            '10 pieces seeded dried chilli',
+                            '5 pieces seeded big red chilli',
+                            '5 lime leaves',
+                            '4 tbsp cooking oil',
+                            '2 small box coconut milk',
+                            '3 cups milk for additional gravy',
+                            '3 tbsp dark soy sauce',
+                            '1/2 tspn sugar',
+
+
+                        ],
+                        method: [
+
+                            'Prepare the chicken remove the skin and chicken fats. Marinate with a pinch of salt and set aside.',
+                            'Remove the seed of the fresh red chillies and dried chillies, use disposable plastic gloves while deseeding chillies.',
+                            'Pour hot water in a bowl and soak the dried chillies until soft',
+                            'Cut of the green section of lemon grass, remove the outer sheat and cut into thin slices.',
+                            'Chopped the garlic, small onions, and all kinds of ginger into small pieces: easier to blend it into paste.',
+                            'Add chopped garlic, small onions, all kinds of ginger in the food processor',
+                            'Add the red chillies in the food processor and next the dried chillies',
+                            'When the texture is smooth the chicken rendang paste is ready.',
+                            'Heat the cooking oil in the big pan.',
+                            'Saute the rendang paste over low heat until it turns aromatic.',
+                            'Add the chicken slowly, one by one if you must: mix thoroughly for best result.',
+                            'Let it simmer for 10minutes: Add the coconut milk, lime leaves, and lemon grass.',
+                            'Soak the tamarin paste in 6 tbsp of hot water, use only the extract juice, discard the seed and some tiny grains from the seed.',
+                            'Add the extract tamarin paste, mix it well.',
+                            'Add dark soya sauce for taste and color.',
+                            'Add sugar and some cups of milk if you need more gravy and mix thoroughly.',
+                            'Cover the pan and let it simmer of 15minutes. And it is done.',
+
+
+                        ]
+                    },
+                    {
+                        name: 'Chicken Adobo',
+                        imgUrl: 'images/chickenadobo.jpg',
+                        description: '',
+                        ingredients: [
+
+                            '2lbs chicken cut',
+                            '4 cloves of garlic crushed',
+                            'ginger',
+                            '4 pcs dried bay leaves',
+                            '1 big onion',
+                            '8 tbsp soy sauce',
+                            '5 tbsp white vinegar',
+                            '3 tspn ground pepper',
+                            '1 pinch of salt',
+                            '4 tbsp oil',
+                            '1 cups of water',
+                            '1 tspn sugar',
+
+
+
+
+                        ],
+                        method: [
+
+                            'Marinate the chicken with soy sauce and vinegar for 2 hours or overnight for best result.',
+                            'Start frying the marinated chicken with garlic, onions and ginger.',
+                            'Add the remaining marinade sauce and mix it well.',
+                            'Add dried bay leaves and sprinkle ground pepper.',
+                            'Let it simmer for 10mins and bring into boil.',
+                            'Add salt and sugar, mix all together.',
+                            'And wait until the oil is coming out from the chicken.',
+                            'Add water and and wait until the chicken is cooked.',
+                        ]
+                    },
+                    {
+                        name: 'Mongo Soup',
+                        imgUrl: 'images/mongo.jpg',
+                        description: 'Mongo soup or Mung bean soup is also one of my favorite filipino dish. I like to partner it with super fresh deep fry-fish and ofcourse steam rice.',
+                        ingredients: [
+
+                            '2 tbsp dried prawns washed',
+                            '2 cups mung bean',
+                            '2 cups water',
+                            '1 pack spinach or malungay',
+                            '2 tspn fish sauce',
+                            '1 pinch salt',
+
+                        ],
+                        method: [
+
+                            'Boil the mung bean until soft',
+                            'Pan fry the dried prawns and then add the garlic and onions.',
+                            'Add the water and bring it to boil.',
+                            'Add the spinach, when it gets dry add more water.',
+                            'Season it with salt and fish sauce.',
+                            'Serve with steamed-rice and enjoy.',
+                            
+
+                        ]
+                    },
+                    {
+                        name: 'Ginataang Kalabasa',
+                        imgUrl: 'images/ginataangkalabasa.png',
+                        description: 'Ginataang Kalabasa is one my favorite filipino dish. My dad, my mom and my grandma always used to make it when I was growing up. With all the fresh-picked vegetables with the coconut milk is always taste delicious.',
+                        ingredients: [
+
+                            '1 small squash',
+                            '1 pack long bean',
+                            '3 tbsp dried prawns',
+                            '1 can coconut milk',
+                            '1 tbsp fish sauce',
+                            '1 pinch salt',
+                            '3 tbsp cooking oil',
+                            '2 tbsp grill-meat spice',
+                            '2 cloves of garlic',
+                            '1 small onions',
+                        
+
+
+                        ],
+                        method: [
+
+                            'Pan fry the dried prawns, garlic and onions.',
+                            'Add the squash, next long bean and mix it well.',
+                            'And then add the grill-meat spice to caramelise the vegies.',
+                            'Let it simmer and pour the coconut milk.',
+                            'Add pinch of salt and fish sauce add more if necessary.',
+                            'Add one cup of water when it gets dry and add a bit more fish sauce for the taste.',
+                            'Put into boil and serve with rice when it is ready. Enjoy.',
+
+
+
+
+
+
+                        ]
+                    },
+                    {
+                        name: 'Chili Con Carne',
+                        imgUrl: 'images/chiliconcarne.jpg',
+                        description: '',
+                        ingredients: [
+
+                            '2 tspn cinnamon powder',
+                            '1 stalk dried cinammon',
+                            '1/2 tspn chilli pepper powder',
+                            '1 tbsp grill-meat spice',
+                            '2 box tomato sauce',
+                            '3 tbsp dried tomato with oil',
+                            '1 can chilli beans',
+                            '1 piece paprika sliced',
+                            '2 packet grounded beef',
+                            '1 piece garlic sliced',
+                            '2 small onions sliced',
+                            '3 tbsp soy sauce',
+                            '1 pinch salt',
+
+
+                        ],
+                        method: [
+                            'Add oil in the pan, saute the garlic and fry the grounded beef until it is done.',
+                            'Add the grill-meat spice in the grounded beef and salt, stir properly.',
+                            'Add 1 tablespoon of soy sauce. Let it simmer and set aside.',
+                            'Pan fry the dried tomato including oil.',
+                            'Saute the onions and put in paprika. And add back the grounded beef, mix it well.',
+                            'Pour the chilli beans, chilli pepper powder, cinnamon stalk and cinnamon powder.',
+                            'Let it simmer and add the tomato sauce. Add the remaining soy sauce, and add more if necessary for the taste.',
+                            'Bring into boil and it is done. And serve with rice. Enjoy.',
+
+
+
+
+
+
+                        ]
+                    },
+                    {
+                        name: 'Norwegian Taco',
+                        imgUrl: 'images/taco.jpg',
+                        description: 'Norwegian Taco is one of my favorite norwegian meal. When it comes to friday dinner plans, Norwegians seems to have one thing on their minds: Tacos!',
+                        ingredients: [
+
+                            '1 pack taco wrapper',
+                            '1 piece cucumber',
+                            '2 pieces paprika',
+                            '10 piecs cherry tomatoes',
+                            '2 pieces avocado',
+                            '1/4 cut lemon',
+                            '1 pinch salt',
+                            '1/2 cloves garlic',
+                            '1 small can of corn',
+                            '2 pack grounded beef',
+                            '1 sachet taco seasoning',
+                            '1 bottle taco sauce',
+                            '1 small bowl shredded cheese',
+                            '4 tbsp coconut cream',
+                            '4 tbsp sour cream',
+                            '1 pack taco chips',
+
+                        ],
+                        method: [
+                           
+                            'Prepare the avocado for guacamola chop into tiny pieces until softly fine.',
+                            'Add minced garlic and lemon juice to avocado and set aside.',
+                            'Chop the cucumber and paprika into tiny dice.',
+                            'Chop the cherry tomatoes into four pieces.',
+                            'After chopping paprika, cherry tomatoes, and cucumber set aside in a bowl separately.',
+                            'Start cooking the ground beef in a pan, wait until it is cooked and add taco seasoning.',
+                            'Put the corn in a small bowl and the taco chips in a big bowl.',
+                            'Next start cooking the grounded beef in a pan until it is done, add the taco seasoning and set aside.',
+                            'Next heat up the oven in 200 degrees. When it is ready. Put in the taco wrapper for 6-8 minutes.',
+                            'Serve and enjoy the delicious norwegian taco.',
+
+
+
+
+                        ]
+                    },
+                    {
+                        name: 'Thai Chicken Curry',
+                        imgUrl: 'images/thaicurry.jpg',
+                        description: 'Thai Chicken Curry is one of my favorite thai dish',
+                        ingredients: [
+                            '1 pack chicken breast thinly sliced',
+                            '1 small grated ginger',
+                            '1 small onion chopped',
+                            '5 cloves minced garlic',
+                            '5 tbsp soy sauce',
+                            '3 tbsp grill-meat seasoning',
+                            '1 chicken cube',
+                            '1 pinch salt',
+                            '3 tbsp thai curry paste',
+                            '1 tspn turmeric powder',
+                            '1 pack mixed vegies (ready made)',
+                            '1 can coconut milk',
+
+
+
+
+
+                        ],
+                        method: [
+
+                            'Prepare the chicken chop in thinly slices.',
+                            'Start pan frying the chicken with a little bit of cooking oil.',
+                            'Add the chicken cube, salt, grill-meat spice and set aside.',
+                            'In a separate pan, fry the grated ginger, minced garlic and onions.',
+                            'Add thai curry paste and the ingredients will start to caramelize all together.',
+                            'Add the chicken scoop by scoop and mix it well.',
+                            'Add soy sauce for taste, turmeric powder and mix vegies.',
+                            'Add coconut milk and put into boil.',
+                            'Let it simmer and serve with rice and enjoy.',
+
+                        ]
+                    },
+                    {
+                        name: 'Pasta Bolognese',
+                        imgUrl: 'images/pastabolognese.jpg',
+                        description: 'Pasta Bolognese is delicious',
+                        ingredients: [
+                            '1 big onion minced',
+                            '5 pcs garlic minced',
+                            '5 carrots minced',
+                            '2 pack ground beef',
+                            '1 pack pasta',
+                            '1 big bottle pasta bolognese sauce',
+                            '5 tbsp shredded cheese',
+                            '2 tbsp grill-meat spice',
+
+                        ],
+
+                        method: [
+                            'Boil the pasta add one pinch of salt and one teaspoon of oil in the boiling water.',
+                            'Set aside the boiled pasta when it is ready.',
+                            'Saute the minced-garlic and minced-onion.',
+                            'Add the ground beef and mix it well.',
+                            'Add 2 tspn of grill-meat spice and set aside.',
+                            'Next pan fry the minced-carrots.',
+                            'Add the pasta sauce.',
+                            'Let it boil and add back the ground beef.',
+                            'When the sauce is ready. Serve the pasta with shredded cheese on top.',
+
+                        ]
+                    },
+                    {
+                        name: 'Salmon with Salad',
+                        imgUrl: 'images/salmonsalad.jpg',
+                        description: '',
+                        ingredients: [
+                            '1 pack of salmon',
+                            '1 lemon juice',
+                            'a pinch of salt',
+                            '2 tspn of ground pepper',
+                            '2 tbsp butter',
+                            '1 mango',
+                            '2 avocado',
+                            '1 cucumber',
+                            '1 paprika',
+                            '10 cherry tomatoes',
+                            
+
+                        ],
+                        method: [
+                            'Heat the oven in 200 degrees and set it for baking.',
+                            'Prepare the salmon in the baking pan with the baking paper.',
+                            'Start seasoning the salmon by adding lemon juice, salt and ground pepper.',
+                            'Add butter on top of each salmon.',
+                            'When the oven is ready bake the salmon for 15-20 minutes.',
+                            'Prepare the salad by start chopping mango, avocado, cucumber, paprika into dice in equal sizes.',
+                            'Chop the cherry tomatoes into four pieces.',
+                            'Combine paprika, mango, avocado, cucumber and cherry tomatoes in a big bowl and gently mix all together.',
+                            'Serve the salmon with salad on the side and enjoy.',
+
+
+                        ]
+                    },
+                    {
+                        name: 'Pinakbet',
+                        imgUrl: 'images/pinakbet.jpg',
+                        description: 'Pinakbet is a Filipino vegetable stew from Ilocos Region. The name derived from the word pinakkebet which means "shriveled" in reference to the vegetables being sweated in the pot over low heat until "shrunken". It is traditionally flavored with bagoong monamon; a type of seasoning made of fermented fish. And for me it is best serve with steamed-rice and fried fish soo yummylicious.',
+                        ingredients: [
+                            '1/2 small squash, peeled and cut into pieces',
+                            '6 okra, ends trimmed',
+                            '8 stalks long bean, ends trimmed and cut into 2-inch lengths',
+                            '1 bittermelon, seeded, halved and cut into 1-inch thick',
+                            '5 small eggplant, ends trimmed and cut into 1-inch thick',
+                            '2 big tomatoes, cut into 4 pieces',
+                            '1 onion chopped',
+                            '2 cloves garlic minced',
+                            '1/2 pound pork, cut into diced cubes or precooked shredded fish',
+                            '1 tbsp cooking oil',
+                            '1 tbsp shrimp paste or bagoong',
+                            '1 pinch salt and pepper',
+                            '2 cups water',
+                        ],
+                        method: [
+                            'Heat the cooking oil in a pan, put in the garlic-minced and chopped-onions.',
+                            'Add the diced pork until golden drown.',
+                            'Add the shrimp paste or bagoong monamon and stir ocassionally.',
+                            'Add tomatoes, mash it until soften.',
+                            'Add water and bring it into boil.',
+                            'Lower heat and cover until 10 to 15minutes.',
+                            'When the meat is tender: Add squash, stir for about 3minutes.',
+                            'Add long beans and cook until tender crisp.',
+                            'Add bittermelon, next eggplant and okra.',
+                            'Add water maintain atleast 1 cup of gravy sauce. Do not let it dry atleast.',
+                            'Add seasoning, a pinch of salt and pepper.',
+                            'Serve with steamed-rice and enjoy.',
+
+
+
+
+                        ]
+                    },
+                    {
+                        name: 'Lasagne',
+                        imgUrl: 'images/lasagne.jpg',
+                        description: '',
+                        ingredients: [
+                            '1 pack lasagne ( ready-made )',
+                            '1 pack ground beef',
+
+                        ],
+                        method: [
+                            'Cook the grounded beef in a pan.',
+                            'Add the sauce until cooked.',
+                            'When ready put the grounded beef with sauce in a baking tray.',
+                            'Layer it with lasagne pasta and add more layer if needed.',
+                            'Add the cheese sauce and grated cheese on top.',
+                            'Put inside the preheated-oven in 200 degrees.',
+                            'Cook by 10-15 minutes until golden brown on top.',
+
+                        ]
+                    },
+
+
+                ],
+                currentFood: null,
+            }
+        })
+
+    </script>
+</body>
+
+</html>
