@@ -29,10 +29,10 @@
                 <h1 class="main-heading">R E C I P E S</h1>
                 <div class="card">
                     <div class="grid">
-                        <a v-for="food in foods" class="grid-item food-card" v-on:click="currentFood = food">
+                        <button v-for="food in foods" class="grid-item food-card" v-on:click="currentFood = food">
                             <img v-bind:alt="food.name" v-bind:src="food.imgUrl">
                             <h4>{{food.name}}</h4>
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
