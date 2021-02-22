@@ -87,6 +87,12 @@ img {
     text-decoration: none;
     transition: transform 0.2s;
     cursor: pointer;
+    /* Unset button styles */
+    font-size: unset;
+    text-align: unset;
+    background-color: unset;
+    border: unset;
+    font-family: unset;
 }
 .food-card:hover {
     transform: translateY(-4px);
